@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions</title>
+</head>
+<body>
+    <h1>JavaScript Functions Demo</h1>
+    <div id="output"></div>
+    <h1>Hypotenuse Calculator</h1>
+    <div id="output"></div>
+    <h1>The Geometrizer</h1>
+    <div id="output"></div>
+    <script>
+        // 1. Display current date & time
+        function displayCurrentDateTime() {
+            var now = new Date();
+            document.getElementById('output').innerHTML += "<p>Current Date & Time: " + now + "</p>";
+        }
+
+        // 2. Greet user with full name
+        function greetUser (firstName, lastName) {
+            var fullName = firstName + " " + lastName;
+            document.getElementById('output').innerHTML += "<p>Hello, " + fullName + "!</p>";
+        }
+
+        // 3. Add two numbers
+        function addNumbers() {
+            var num1 = parseFloat(prompt("Enter first number:"));
+            var num2 = parseFloat(prompt("Enter second number:"));
+            var sum = num1 + num2;
+            document.getElementById('output').innerHTML += "<p>Sum: " + sum + "</p>";
+        }
+
+        // 4. Calculator
+        function calculator(num1, num2, operator) {
+            var result;
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = "Invalid operator";
+            }
+            document.getElementById('output').innerHTML += "<p>Result: " + result + "</p>";
+        }
+
+        // 5. Square a number
+        function square(num) {
+            return num * num;
+        }
+
+        // 6. Compute factorial
+        function factorial(n) {
+            if (n < 0) return "Invalid input";
+            if (n === 0 || n === 1) return 1;
+            return n * factorial(n - 1);
+        }
+
+        // 7. Display counting
+        function displayCounting(start, end) {
+            var counting = '';
+            for (var i = start; i <= end; i++) {
+                counting += i + ' ';
+            }
+            document.getElementById('output').innerHTML += "<p>Counting: " + counting + "</p>";
+        }
+
+        // 8. Hypotenuse
+        function calculateHypotenuse(base, perpendicular) {
+            // Inner function to calculate the square of a number
+            function calculateSquare(num) {
+                return num * num;
+            }
+
+            // Calculate hypotenuse using the Pythagorean theorem
+            var hypotenuse = Math.sqrt(calculateSquare(base) + calculateSquare(perpendicular));
+            return hypotenuse;
+        }
+
+        // Example 
+        var base = parseFloat(prompt("Enter the base of the triangle:"));
+        var perpendicular = parseFloat(prompt("Enter the perpendicular of the triangle:"));
+        var hypotenuse = calculateHypotenuse(base, perpendicular);
+
+        document.getElementById('output').innerHTML = "<p>The hypotenuse of the triangle is: " + hypotenuse + "</p>";
+
+
+
+
+
+
+
+
+
+          // 9. Calculate the area of a rectangle
+          function calculateArea(width, height) {
+            return width * height;
+        }
+
+        // Using values directly
+        var area1 = calculateArea(5, 10);
+        // Using variables
+        var w = 7;
+        var h = 12;
+        var area2 = calculateArea(w, h);
+        
+        // Display area results
+        document.getElementById('output').innerHTML += "<p>Area (values): " + area1 + "</p>";
+        document.getElementById('output').innerHTML += "<p>Area (variables): " + area2 + "</p>";
+
+        // 10. Check if a string is a palindrome
+        function isPalindrome(str) {
+            var cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, ''); // Remove non-alphanumeric characters
+            var reversedStr = cleanedStr.split('').reverse().join('');
+            return cleanedStr === reversedStr;
+        }
+
+        var palindromeTest = "Madam";
+        document.getElementById('output').innerHTML += "<p>Is '" + palindromeTest + "' a palindrome? " + isPalindrome(palindromeTest) + "</p>";
+
+        // 11. Convert first letter of each word to uppercase
+        function capitalizeFirstLetter(string) {
+            return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
+
+        var exampleString = 'the quick brown fox';
+        document.getElementById('output').innerHTML += "<p>Capitalized String: '" + capitalizeFirstLetter(exampleString) + "'</p>";
+
+        // 12. Find the longest word in a string
+        function findLongestWord(string) {
+            var words = string.split(' ');
+            var longestWord = words.reduce((a, b) => a.length >= b.length ? a : b);
+            return longestWord;
+        }
+
+        var stringToAnalyze = 'Web Development Tutorial';
+        document.getElementById('output').innerHTML += "<p>Longest Word: '" + findLongestWord(stringToAnalyze) + "'</p>";
+
+        // 13. Count occurrences of a specified letter in a string
+        function countOccurrences(string, letter) {
+            var regex = new RegExp(letter, 'gi'); // 'gi' for global and case-insensitive
+            var matches = string.match(regex);
+            return matches ? matches.length : 0;
+        }
+
+        var sampleString = 'JSResourceS.com';
+        var letterToCount = 'o';
+        document.getElementById('output').innerHTML += "<p>Occurrences of '" + letterToCount + "' in '" + sampleString + "': " + countOccurrences(sampleString, letterToCount) + "</p>";
+  
+
+        // 14
+         // Function to calculate the circumference of a circle
+         function calcCircumference(radius) {
+            var circumference = 2 * Math.PI * radius; // Circumference formula
+            document.getElementById('output').innerHTML += "<p>The circumference is " + circumference.toFixed(2) + ".</p>";
+        }
+
+        // Function to calculate the area of a circle
+        function calcArea(radius) {
+            var area = Math.PI * Math.pow(radius, 2); // Area formula
+            document.getElementById('output').innerHTML += "<p>The area is " + area.toFixed(2) + ".</p>";
+        }
+
+        // Example usage
+        var radius = parseFloat(prompt("Enter the radius of the circle:"));
+        if (!isNaN(radius) && radius > 0) {
+            calcCircumference(radius);
+            calcArea(radius);
+        } else {
+            document.getElementById('output').innerHTML += "<p>Please enter a valid positive number for the radius.</p>";
+        }
+    </script>
+</body>
+</html>
